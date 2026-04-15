@@ -1,0 +1,27 @@
+{
+  "name": "claude-meter",
+  "version": "1.0.0",
+  "description": "Claude Code statusline: model · 5h quota · weekly quota · context — with color alerts",
+  "keywords": ["claude", "claude-code", "statusline", "usage", "quota", "monitoring", "anthropic"],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sakuralost/claude-meter.git"
+  },
+  "homepage": "https://github.com/sakuralost/claude-meter#readme",
+  "bin": {
+    "claude-meter": "./dist/index.cjs"
+  },
+  "files": ["dist", "LICENSE", "README.md"],
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "build": "node build.mjs",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "esbuild": "^0.21.0",
+    "typescript": "^5.4.0"
+  }
+}

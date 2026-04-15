@@ -1,0 +1,5 @@
+src/
+tsconfig.json
+build.mjs
+*.log
+.DS_Store
