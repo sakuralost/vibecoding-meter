@@ -65,10 +65,10 @@ Claude Meter is the Claude Code statusline implementation in this repository. It
  ✱ Sonnet 4.6 ❯ ◫ 77% → 3:40pm ❯ ○ 97% ❯ ◐ 12%
 ```
 
-Install from the default `claude` branch:
+This package is not published to the npm registry. Install it directly from the default `claude` branch on GitHub with the npm CLI:
 
 ```bash
-npm install -g sakuralost/vibecoding-meter#claude
+npm install -g github:sakuralost/vibecoding-meter#claude
 ```
 
 Add it to `~/.claude/settings.json`:
@@ -116,7 +116,7 @@ Optional `/usage` refresh hook:
 ## Branch Notes
 
 - Use the `codex` branch when installing or editing the Codex plugin layout: `.codex-plugin/`, `scripts/`, `commands/`, and `skills/`.
-- Use the `claude` branch when editing the npm package source under `src/`.
+- Use the `claude` branch when editing the Node package source under `src/`.
 - Keep README wording aligned with actual display semantics: quota is remaining, context is used.
 
 ## License
@@ -190,10 +190,10 @@ Claude Meter 是 Claude Code 的 statusline 实现。效果：
  ✱ Sonnet 4.6 ❯ ◫ 77% → 3:40pm ❯ ○ 97% ❯ ◐ 12%
 ```
 
-从默认 `claude` 分支安装：
+这个包没有发布到 npm registry。这里是用 npm CLI 直接从 GitHub 的默认 `claude` 分支安装：
 
 ```bash
-npm install -g sakuralost/vibecoding-meter#claude
+npm install -g github:sakuralost/vibecoding-meter#claude
 ```
 
 写入 `~/.claude/settings.json`：
@@ -217,7 +217,7 @@ npm install -g sakuralost/vibecoding-meter#claude
 ### 分支说明
 
 - 安装或维护 Codex 插件时使用 `codex` 分支。
-- 修改 Claude npm 包源码时使用 `claude` 分支。
+- 修改 Claude Node 包源码时使用 `claude` 分支。
 - README 和代码语义要保持一致：配额是剩余，上下文是已用。
 
 ### 许可证
