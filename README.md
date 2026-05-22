@@ -1,4 +1,15 @@
-# claude-meter
+# vibecoding-meter
+
+`vibecoding-meter` keeps lightweight status meters for coding assistants in separate branches.
+
+| Branch | Tool | Purpose |
+|--------|------|---------|
+| [`claude`](https://github.com/sakuralost/vibecoding-meter/tree/claude) | `claude-meter` | Claude Code statusline for model, quota windows, and context usage |
+| [`codex`](https://github.com/sakuralost/vibecoding-meter/tree/codex) | `codex-meter` | Codex CLI meter for model, 5-hour quota, weekly quota, and context usage |
+
+This is the default `claude` branch.
+
+## claude-meter
 
 **English** | [中文](#中文说明)
 
@@ -125,6 +136,15 @@ MIT
 **[English](#claude-meter)** | 中文
 
 ---
+
+`vibecoding-meter` 会按分支保存不同编程助手的用量状态栏工具。
+
+| 分支 | 工具 | 用途 |
+|------|------|------|
+| [`claude`](https://github.com/sakuralost/vibecoding-meter/tree/claude) | `claude-meter` | Claude Code 的模型、配额和上下文状态栏 |
+| [`codex`](https://github.com/sakuralost/vibecoding-meter/tree/codex) | `codex-meter` | Codex CLI 的模型、五小时配额、周配额和上下文状态显示 |
+
+当前是默认的 `claude` 分支。
 
 专为 [Claude Code](https://claude.ai/code) 设计的状态栏插件，聚焦于最核心的信息：当前模型、五小时配额（含重置时间）、周配额、上下文用量，并通过颜色变化提前预警。
 
