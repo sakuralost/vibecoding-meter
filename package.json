@@ -7,9 +7,9 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sakuralost/claude-meter.git"
+    "url": "https://github.com/sakuralost/vibecoding-meter.git"
   },
-  "homepage": "https://github.com/sakuralost/claude-meter#readme",
+  "homepage": "https://github.com/sakuralost/vibecoding-meter/tree/claude#readme",
   "bin": {
     "claude-meter": "./dist/index.cjs"
   },
