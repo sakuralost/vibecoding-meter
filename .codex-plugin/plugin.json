@@ -1,0 +1,36 @@
+{
+  "name": "codex-meter",
+  "version": "0.1.0",
+  "description": "Codex CLI status meter for model, 5-hour quota, weekly quota, and context usage.",
+  "author": {
+    "name": "sakuralost",
+    "url": "https://github.com/sakuralost"
+  },
+  "homepage": "https://github.com/sakuralost/vibecoding-meter/tree/codex",
+  "repository": "https://github.com/sakuralost/vibecoding-meter",
+  "license": "MIT",
+  "keywords": [
+    "codex",
+    "status",
+    "usage",
+    "quota",
+    "meter"
+  ],
+  "interface": {
+    "displayName": "Codex Meter",
+    "shortDescription": "Show Codex model, quota windows, and context usage.",
+    "longDescription": "A Codex-native companion to claude-meter. It reads Codex local session telemetry and renders current model, 5-hour quota usage, weekly quota usage, and latest request context pressure.",
+    "developerName": "sakuralost",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Read"
+    ],
+    "websiteURL": "https://github.com/sakuralost/vibecoding-meter/tree/codex",
+    "defaultPrompt": [
+      "Show my current Codex usage meter."
+    ],
+    "brandColor": "#10A37F",
+    "screenshots": []
+  }
+}
