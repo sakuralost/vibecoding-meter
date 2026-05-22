@@ -4,8 +4,8 @@
 
 | Branch | Tool | Purpose |
 |--------|------|---------|
-| [`claude`](https://github.com/sakuralost/vibecoding-meter/tree/claude) | `claude-meter` | Claude Code statusline for model, quota windows, and context usage |
-| [`codex`](https://github.com/sakuralost/vibecoding-meter/tree/codex) | `codex-meter` | Codex CLI meter for model, 5-hour quota, weekly quota, and context usage |
+| [`claude`](https://github.com/sakuralost/vibecoding-meter/tree/claude) | `claude-meter` | Claude Code statusline for model, remaining quota windows, and context usage |
+| [`codex`](https://github.com/sakuralost/vibecoding-meter/tree/codex) | `codex-meter` | Codex CLI meter for model, remaining 5-hour quota, remaining weekly quota, and context usage |
 
 This is the default `claude` branch.
 
@@ -15,29 +15,31 @@ This is the default `claude` branch.
 
 ---
 
-A focused statusline for [Claude Code](https://claude.ai/code) that shows what actually matters: current model, 5-hour quota with reset time, weekly quota, and context usage — with color alerts that warn you before you run out.
+A focused statusline for [Claude Code](https://claude.ai/code) that shows what actually matters: current model, remaining 5-hour quota with reset time, remaining weekly quota, and context usage — with color alerts that warn you before you run out.
 
 ## Preview
 
 ```
- ✱ Sonnet 4.6 ❯ ◫ 23% → 3:40pm ❯ ○ 3% ❯ ◐ 12%
+ ✱ Sonnet 4.6 ❯ ◫ 77% → 3:40pm ❯ ○ 97% ❯ ◐ 12%
 ```
 
-**Color levels** (applied per-segment):
+**Quota color levels** (applied to remaining 5-hour and weekly quota):
 
-| Usage | Color | Meaning |
-|-------|-------|---------|
-| < 70% | Default | All good |
-| 70–89% | 🟠 Amber | Getting high |
-| ≥ 90% | 🔴 Red | Almost out |
+| Remaining | Color | Meaning |
+|-----------|-------|---------|
+| > 30% | Default | All good |
+| 11-30% | 🟠 Amber | Getting low |
+| ≤ 10% | 🔴 Red | Almost out |
+
+Context still uses the opposite rule: high context usage warns at 70% and turns red at 90%.
 
 ## Segments
 
 | Symbol | Segment | Description |
 |--------|---------|-------------|
 | `✱` | Model | Current Claude model (e.g. `Sonnet 4.6`, `Opus 4`) |
-| `◫` | 5-hour quota | Usage % of your rolling 5-hour block + reset clock time |
-| `○` | Weekly quota | Usage % of your 7-day allowance |
+| `◫` | 5-hour quota | Remaining % of your rolling 5-hour block + reset clock time |
+| `○` | Weekly quota | Remaining % of your 7-day allowance |
 | `◐` | Context | How full the current conversation context window is |
 
 The reset time shown next to `◫` is an **absolute clock time** (e.g. `→ 3:40pm`) rather than a countdown — easier to read at a glance.
@@ -141,34 +143,36 @@ MIT
 
 | 分支 | 工具 | 用途 |
 |------|------|------|
-| [`claude`](https://github.com/sakuralost/vibecoding-meter/tree/claude) | `claude-meter` | Claude Code 的模型、配额和上下文状态栏 |
-| [`codex`](https://github.com/sakuralost/vibecoding-meter/tree/codex) | `codex-meter` | Codex CLI 的模型、五小时配额、周配额和上下文状态显示 |
+| [`claude`](https://github.com/sakuralost/vibecoding-meter/tree/claude) | `claude-meter` | Claude Code 的模型、剩余配额和上下文状态栏 |
+| [`codex`](https://github.com/sakuralost/vibecoding-meter/tree/codex) | `codex-meter` | Codex CLI 的模型、五小时剩余配额、周剩余配额和上下文状态显示 |
 
 当前是默认的 `claude` 分支。
 
-专为 [Claude Code](https://claude.ai/code) 设计的状态栏插件，聚焦于最核心的信息：当前模型、五小时配额（含重置时间）、周配额、上下文用量，并通过颜色变化提前预警。
+专为 [Claude Code](https://claude.ai/code) 设计的状态栏插件，聚焦于最核心的信息：当前模型、五小时剩余配额（含重置时间）、周剩余配额、上下文用量，并通过颜色变化提前预警。
 
 ### 效果预览
 
 ```
- ✱ Sonnet 4.6 ❯ ◫ 23% → 3:40pm ❯ ○ 3% ❯ ◐ 12%
+ ✱ Sonnet 4.6 ❯ ◫ 77% → 3:40pm ❯ ○ 97% ❯ ◐ 12%
 ```
 
-**颜色说明**（每个段独立判断）：
+**配额颜色说明**（五小时和周配额都显示剩余百分比）：
 
-| 用量 | 颜色 | 含义 |
+| 剩余 | 颜色 | 含义 |
 |------|------|------|
-| < 70% | 默认色 | 正常 |
-| 70–89% | 🟠 橙色 | 偏高，留意 |
-| ≥ 90% | 🔴 红色 | 快用完了 |
+| > 30% | 默认色 | 正常 |
+| 11-30% | 🟠 橙色 | 偏低，留意 |
+| ≤ 10% | 🔴 红色 | 快用完了 |
+
+上下文仍按占用率判断：70% 开始橙色预警，90% 变红。
 
 ### 各段说明
 
 | 符号 | 名称 | 含义 |
 |------|------|------|
 | `✱` | 模型 | 当前使用的 Claude 模型，如 `Sonnet 4.6`、`Opus 4` |
-| `◫` | 五小时配额 | 滚动五小时块的用量百分比 + 重置时刻 |
-| `○` | 周配额 | 七天周期配额的用量百分比 |
+| `◫` | 五小时配额 | 滚动五小时块的剩余百分比 + 重置时刻 |
+| `○` | 周配额 | 七天周期配额的剩余百分比 |
 | `◐` | 上下文 | 当前对话上下文窗口的占用百分比 |
 
 `◫` 旁边显示的是**绝对时间**（如 `→ 3:40pm`），而非"还剩多少分钟"，一眼就能判断还有多久恢复。

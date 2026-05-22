@@ -42,10 +42,20 @@ interface Seg {
   text: string;
 }
 
-function colorsForPercent(pct: number, normalFg: string): { bgHex: string; fgHex: string } {
+function colorsForUsagePercent(pct: number, normalFg: string): { bgHex: string; fgHex: string } {
   if (pct >= 90) return { bgHex: CRIT_BG, fgHex: CRIT_FG };
   if (pct >= 70) return { bgHex: WARN_BG, fgHex: WARN_FG };
   return { bgHex: BASE_BG, fgHex: normalFg };
+}
+
+function colorsForRemainingPercent(pct: number, normalFg: string): { bgHex: string; fgHex: string } {
+  if (pct <= 10) return { bgHex: CRIT_BG, fgHex: CRIT_FG };
+  if (pct <= 30) return { bgHex: WARN_BG, fgHex: WARN_FG };
+  return { bgHex: BASE_BG, fgHex: normalFg };
+}
+
+function remainingPercent(usedPct: number): number {
+  return Math.max(0, Math.min(100, 100 - usedPct));
 }
 
 // ── Time formatting ─────────────────────────────────────────────────────────
@@ -100,8 +110,8 @@ export function render(input: RenderInput): string {
   // ── 5-hour block
   const fh = input.usage?.fiveHour;
   if (fh !== undefined) {
-    const pct = fh?.percent ?? null;
-    const { bgHex, fgHex } = pct !== null ? colorsForPercent(pct, BLOCK_FG) : { bgHex: BASE_BG, fgHex: BLOCK_FG };
+    const pct = fh?.percent !== undefined ? remainingPercent(fh.percent) : null;
+    const { bgHex, fgHex } = pct !== null ? colorsForRemainingPercent(pct, BLOCK_FG) : { bgHex: BASE_BG, fgHex: BLOCK_FG };
     let text: string;
     if (pct === null) {
       text = ' \u25EB -- ';  // ◫
@@ -115,15 +125,15 @@ export function render(input: RenderInput): string {
   // ── Weekly
   const sw = input.usage?.sevenDay;
   if (sw !== undefined) {
-    const pct = sw?.percent ?? null;
-    const { bgHex, fgHex } = pct !== null ? colorsForPercent(pct, WEEKLY_FG) : { bgHex: BASE_BG, fgHex: WEEKLY_FG };
+    const pct = sw?.percent !== undefined ? remainingPercent(sw.percent) : null;
+    const { bgHex, fgHex } = pct !== null ? colorsForRemainingPercent(pct, WEEKLY_FG) : { bgHex: BASE_BG, fgHex: WEEKLY_FG };
     const text = pct === null ? ' \u25CB -- ' : ` \u25CB ${pct}% `;  // ○
     segs.push({ bgHex, fgHex, text });
   }
 
   // ── Context
   const ctxPct = input.contextPct;
-  const ctxColors = colorsForPercent(ctxPct, CTX_FG);
+  const ctxColors = colorsForUsagePercent(ctxPct, CTX_FG);
   segs.push({
     bgHex: ctxColors.bgHex,
     fgHex: ctxColors.fgHex,

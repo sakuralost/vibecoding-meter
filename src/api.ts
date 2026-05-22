@@ -11,7 +11,7 @@ function dbg(msg: string): void {
 }
 
 export interface UsageBlock {
-  percent: number;   // 0–100
+  percent: number;   // API utilization, 0-100 used
   resetsAt: Date;
 }
 

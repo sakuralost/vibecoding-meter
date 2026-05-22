@@ -1,7 +1,7 @@
 {
   "name": "claude-meter",
   "version": "1.0.0",
-  "description": "Claude Code statusline: model · 5h quota · weekly quota · context — with color alerts",
+  "description": "Claude Code statusline: model · remaining 5h quota · remaining weekly quota · context — with color alerts",
   "keywords": ["claude", "claude-code", "statusline", "usage", "quota", "monitoring", "anthropic"],
   "author": "",
   "license": "MIT",
