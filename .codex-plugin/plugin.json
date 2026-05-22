@@ -1,7 +1,7 @@
 {
   "name": "codex-meter",
   "version": "0.1.0",
-  "description": "Codex CLI status meter for model, 5-hour quota, weekly quota, and context usage.",
+  "description": "Codex CLI status meter for model, remaining 5-hour quota, remaining weekly quota, and context usage.",
   "author": {
     "name": "sakuralost",
     "url": "https://github.com/sakuralost"
@@ -18,8 +18,8 @@
   ],
   "interface": {
     "displayName": "Codex Meter",
-    "shortDescription": "Show Codex model, quota windows, and context usage.",
-    "longDescription": "A Codex-native companion to claude-meter. It reads Codex local session telemetry and renders current model, 5-hour quota usage, weekly quota usage, and latest request context pressure.",
+    "shortDescription": "Show Codex model, remaining quota windows, and context usage.",
+    "longDescription": "A Codex-native companion to claude-meter. It reads Codex local session telemetry and renders current model, remaining 5-hour quota, remaining weekly quota, and latest request context pressure.",
     "developerName": "sakuralost",
     "category": "Productivity",
     "capabilities": [

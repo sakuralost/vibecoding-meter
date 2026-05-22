@@ -1,5 +1,5 @@
 ---
-description: Show the current Codex model, 5-hour quota, weekly quota, and context usage.
+description: Show the current Codex model, remaining 5-hour quota, remaining weekly quota, and context usage.
 ---
 
 # Codex Meter
@@ -26,7 +26,7 @@ Read Codex local telemetry only. The script uses the latest `~/.codex/sessions/*
 
 ## Verification
 
-Confirm the output includes model, 5-hour quota, weekly quota, and context fields. If Codex has not emitted token telemetry yet, explain that the meter will populate after the next model response.
+Confirm the output includes model, remaining 5-hour quota, remaining weekly quota, and context fields. If Codex has not emitted token telemetry yet, explain that the meter will populate after the next model response.
 
 ## Summary
 

@@ -160,6 +160,17 @@ function colorsForPercent(value, normalBg) {
   return { bgHex: normalBg, fgHex: BASE_FG };
 }
 
+function colorsForRemainingPercent(value, normalBg) {
+  if (value <= 10) return { bgHex: CRIT_BG, fgHex: CRIT_FG };
+  if (value <= 30) return { bgHex: WARN_BG, fgHex: WARN_FG };
+  return { bgHex: normalBg, fgHex: BASE_FG };
+}
+
+function remainingPercent(usedPct) {
+  if (usedPct === null) return null;
+  return Math.max(0, Math.min(100, 100 - usedPct));
+}
+
 function renderPowerline(segs) {
   if (noColor) return segs.map((s) => s.text.trim()).join(' > ');
   let out = '';
@@ -175,24 +186,24 @@ function renderPowerline(segs) {
 function render(data) {
   const primary = data.rate?.primary;
   const secondary = data.rate?.secondary;
-  const fivePct = pct(primary?.used_percent);
-  const weekPct = pct(secondary?.used_percent);
+  const fivePct = remainingPercent(pct(primary?.used_percent));
+  const weekPct = remainingPercent(pct(secondary?.used_percent));
   const ctxPct = contextPercent(data.token);
   const compact = (process.stdout.columns || 120) < 80;
   const segs = [];
 
   segs.push({ bgHex: MODEL_BG, fgHex: BASE_FG, text: ` \u2731 ${formatModel(data.model)} ` });
 
-  const fiveColors = colorsForPercent(fivePct ?? 0, FIVE_BG);
+  const fiveColors = fivePct === null ? { bgHex: FIVE_BG, fgHex: BASE_FG } : colorsForRemainingPercent(fivePct, FIVE_BG);
   const fiveReset = !compact ? resetTime(primary?.resets_at) : null;
-  const fiveLabel = compact ? '5h' : '5h used';
+  const fiveLabel = compact ? '5h' : '5h left';
   segs.push({
     ...fiveColors,
     text: ` \u25EB ${fiveLabel} ${fivePct ?? '--'}%${fiveReset ? ` \u2192 ${fiveReset}` : ''} `,
   });
 
-  const weekColors = colorsForPercent(weekPct ?? 0, WEEK_BG);
-  const weekLabel = compact ? 'wk' : 'week used';
+  const weekColors = weekPct === null ? { bgHex: WEEK_BG, fgHex: BASE_FG } : colorsForRemainingPercent(weekPct, WEEK_BG);
+  const weekLabel = compact ? 'wk' : 'week left';
   segs.push({ ...weekColors, text: ` \u25CB ${weekLabel} ${weekPct ?? '--'}% ` });
 
   const ctxColors = colorsForPercent(ctxPct, CTX_BG);

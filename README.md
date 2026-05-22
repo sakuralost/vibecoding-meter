@@ -6,16 +6,18 @@ This branch contains **Codex Meter**, the Codex CLI companion in the `vibecoding
 
 | Branch | Tool | Purpose |
 |--------|------|---------|
-| [`claude`](https://github.com/sakuralost/vibecoding-meter/tree/claude) | `claude-meter` | Claude Code statusline for model, quota windows, and context usage |
-| [`codex`](https://github.com/sakuralost/vibecoding-meter/tree/codex) | `codex-meter` | Codex CLI meter for model, 5-hour quota, weekly quota, and context usage |
+| [`claude`](https://github.com/sakuralost/vibecoding-meter/tree/claude) | `claude-meter` | Claude Code statusline for model, remaining quota windows, and context usage |
+| [`codex`](https://github.com/sakuralost/vibecoding-meter/tree/codex) | `codex-meter` | Codex CLI meter for model, remaining 5-hour quota, remaining weekly quota, and context usage |
 
 It renders:
 
 ```text
-✱ GPT-5.5 > ◫ 5h used 2% → 5:23pm > ○ week used 0% > ◐ ctx used 31%
+✱ GPT-5.5 > ◫ 5h left 98% → 5:23pm > ○ week left 100% > ◐ ctx used 31%
 ```
 
 The script reads Codex's local session telemetry from `~/.codex/sessions/**/*.jsonl`. It does not call private APIs or print credentials.
+
+The quota segments show **remaining** percentage. Context still shows **used** percentage.
 
 ## Usage
 
@@ -40,4 +42,4 @@ Codex CLI v0.128.0 does not currently support custom slash commands. The plugin 
 
 ## Notes
 
-Codex currently emits the relevant rate limit telemetry into session logs. `primary` is the 300-minute window, `secondary` is the 10080-minute window, and `ctx used` is the latest request input tokens divided by the model context window for the current session.
+Codex currently emits the relevant rate limit telemetry into session logs. `primary` is the 300-minute window, `secondary` is the 10080-minute window, `5h left`/`week left` are calculated from `100 - used_percent`, and `ctx used` is the latest request input tokens divided by the model context window for the current session.

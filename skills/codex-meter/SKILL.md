@@ -1,11 +1,11 @@
 ---
 name: codex-meter
-description: Show the current Codex usage meter, including model, 5-hour quota, weekly quota, and context usage. Use when the user asks for codex meter, usage meter, quota, rate limit, context usage, or current Codex usage.
+description: Show the current Codex usage meter, including model, remaining 5-hour quota, remaining weekly quota, and context usage. Use when the user asks for codex meter, usage meter, quota, rate limit, context usage, or current Codex usage.
 ---
 
 # Codex Meter
 
-Run the local meter script and report its compact status line.
+Run the local meter script and report its compact status line. The quota segments show remaining percentage; the context segment shows used percentage.
 
 ## Command
 
